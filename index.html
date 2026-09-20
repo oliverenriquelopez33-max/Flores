@@ -1,9 +1,9 @@
-html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flores Amarillas Para Ti 💛</title>
+    <title>Flores Amarillas Especiales 💛</title>
     <style>
         * {
             box-sizing: border-box;
@@ -12,176 +12,230 @@ html>
         }
 
         body {
-            background: linear-gradient(135deg, #fffdf0 0%, #fff8d6 100%);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fffbe6 0%, #fff3b0 100%);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            text-align: center;
             padding: 20px;
             overflow-x: hidden;
-            position: relative;
+            color: #4a3e10;
         }
 
-        /* Lluvia de flores de fondo */
+        /* Lluvia de flores */
         .flower-rain {
             position: fixed;
             top: -10%;
             font-size: 24px;
             user-select: none;
             z-index: 1;
-            animation: fall 5s linear infinite;
+            pointer-events: none;
+            animation: fall linear infinite;
         }
 
         @keyframes fall {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(110vh) rotate(360deg);
-                opacity: 0;
-            }
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(5px);
-            border-radius: 25px;
-            box-shadow: 0 15px 35px rgba(230, 180, 0, 0.25);
-            padding: 35px 25px;
-            max-width: 420px;
-            width: 100%;
-            border: 2px solid #ffe600;
-            z-index: 10;
-            position: relative;
-            animation: fadeIn 1.2s ease-in-out;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 30px 22px;
+            box-shadow: 0 12px 35px rgba(212, 160, 23, 0.2);
+            border: 2px solid #ffe066;
+            text-align: center;
+            animation: fadeIn 0.8s ease-out;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .flower-display {
-            font-size: 4.5rem;
-            margin: 10px 0 20px;
-            animation: pulse 2s infinite ease-in-out;
+        .big-flowers {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
             cursor: pointer;
+            animation: bounce 2s infinite ease-in-out;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.12); }
-            100% { transform: scale(1); }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
         }
 
         h1 {
-            color: #d4a017;
-            font-size: 1.8rem;
+            color: #b38600;
+            font-size: 1.7rem;
             margin-bottom: 15px;
-            font-weight: 700;
         }
 
-        p {
-            color: #4a4a4a;
-            font-size: 1.05rem;
-            line-height: 1.6;
-            margin-bottom: 25px;
-        }
-
-        .btn-love {
-            background: linear-gradient(135deg, #ffd700, #ffae00);
-            color: #5a4000;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 50px;
+        .letter {
             font-size: 1rem;
-            font-weight: bold;
-            box-shadow: 0 5px 15px rgba(255, 174, 0, 0.4);
-            cursor: pointer;
-            transition: all 0.3s ease;
+            line-height: 1.6;
+            color: #554817;
+            background: #fffdf0;
+            padding: 18px;
+            border-radius: 16px;
+            border: 1px dashed #ffd43b;
+            margin-bottom: 18px;
+            white-space: pre-line;
+            text-align: left;
         }
 
-        .btn-love:active {
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #ffd43b, #fcc419);
+            color: #3d3000;
+            border: none;
+            padding: 14px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(252, 196, 25, 0.4);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        .btn-secondary {
+            background: #ffffff;
+            border: 2px solid #ffe066;
+            color: #856404;
+        }
+
+        /* Sección de notas interactivas */
+        .notes-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .note-card {
+            background: #fff9db;
+            border: 1px solid #ffe066;
+            padding: 15px;
+            border-radius: 16px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #745700;
+            cursor: pointer;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.03);
+            transition: transform 0.2s;
+        }
+
+        .note-card:active {
             transform: scale(0.95);
         }
 
-        .footer-text {
+        .footer {
+            text-align: center;
             font-size: 0.85rem;
-            color: #999;
-            margin-top: 20px;
-        }
-
-        /* Mensaje emergente al presionar el botón */
-        .hidden-message {
-            display: none;
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #fff9c4;
-            border-radius: 15px;
-            color: #7f6000;
-            font-size: 0.95rem;
-            border: 1px dashed #ffd700;
-            animation: fadeIn 0.5s ease;
+            color: #998125;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <div class="flower-display" onclick="createBurst()">🌻✨🌼</div>
-        <h1>¡Unas Flores Amarillas Para Ti!</h1>
-        <p>Aunque la distancia nos separe un poco, no podía dejar pasar este día sin entregarte las flores más brillantes. Gracias por iluminar todo a tu alrededor y ser tan especial. 💛</p>
+    <div class="container">
         
-        <button class="btn-love" onclick="toggleMessage()">Presiona aquí 💌</button>
+        <div class="card">
+            <div class="big-flowers" onclick="burst()">🌻✨🌼</div>
+            <h1>¡Tus Flores Amarillas!</h1>
+            
+            <div class="letter" id="letterText">
+Aunque la distancia nos separe un poco, no podía dejar pasar este día sin entregarte las flores más brillantes. 
 
-        <div class="hidden-message" id="extraMessage">
-            "Nunca olvides lo mucho que significas para mí. ¡Eres mi persona favorita!" 🌻✨
+Gracias por iluminar todo a tu alrededor y ser esa persona tan especial en mi vida. ¡Te mereces todo lo bonito del mundo! 💛🌻
+            </div>
+
+            <div class="btn-group">
+                <button class="btn" onclick="burst()">¡Más Flores y Confeti! 🎉</button>
+                <button class="btn btn-secondary" onclick="editLetter()">✏️ Editar Carta</button>
+            </div>
         </div>
 
-        <div class="footer-text">Hecho especialmente para ti ✨</div>
+        <h2 style="text-align:center; font-size:1.1rem; color:#856404;">Toca una notita para descubrir algo 💌</h2>
+
+        <div class="notes-grid">
+            <div class="note-card" onclick="alert('🌻 ¡Eres mi persona favorita en todo el mundo!')">
+                Razones para quererte ✨
+            </div>
+            <div class="note-card" onclick="alert('💛 Prometo estar siempre a tu lado para iluminar tus días.')">
+                Una Promesa 🔒
+            </div>
+            <div class="note-card" onclick="alert('🌼 Tus sonrisas son como flores en primavera.')">
+                Un Cumplido 😊
+            </div>
+            <div class="note-card" onclick="alert('✨ ¡Pronto nos veremos para darnos un gran abrazo!')">
+                Un Deseo 🌟
+            </div>
+        </div>
+
+        <div class="footer">
+            Hecho especialmente para ti con mucho cariño 💛
+        </div>
+
     </div>
 
     <script>
-        // Función para crear la lluvia de flores
+        // Lluvia constante de flores
         function createFlower() {
-            const flowers = ['🌻', '🌼', '💛', '✨', '🌸'];
+            const icons = ['🌻', '🌼', '💛', '✨', '🌸', '💐'];
             const flower = document.createElement('div');
             flower.classList.add('flower-rain');
-            flower.innerText = flowers[Math.floor(Math.random() * flowers.length)];
+            flower.innerText = icons[Math.floor(Math.random() * icons.length)];
             flower.style.left = Math.random() * 100 + 'vw';
-            flower.style.animationDuration = Math.random() * 3 + 3 + 's';
-            flower.style.fontSize = Math.random() * 15 + 20 + 'px';
+            flower.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            flower.style.fontSize = (Math.random() * 12 + 18) + 'px';
             
             document.body.appendChild(flower);
 
-            setTimeout(() => {
-                flower.remove();
-            }, 6000);
+            setTimeout(() => flower.remove(), 6000);
         }
 
-        setInterval(createFlower, 300);
+        setInterval(createFlower, 250);
 
-        // Mostrar / ocultar mensaje especial
-        function toggleMessage() {
-            const msg = document.getElementById('extraMessage');
-            if (msg.style.display === 'block') {
-                msg.style.display = 'none';
-            } else {
-                msg.style.display = 'block';
-                createBurst();
+        function burst() {
+            for(let i = 0; i < 15; i++) {
+                setTimeout(createFlower, i * 40);
             }
         }
 
-        // Explosión de flores al interactuar
-        function createBurst() {
-            for(let i = 0; i < 10; i++) {
-                setTimeout(createFlower, i * 50);
+        function editLetter() {
+            const current = document.getElementById('letterText').innerText;
+            const newText = prompt("Escribe tu nuevo mensaje romántico:", current);
+            if(newText !== null && newText.trim() !== "") {
+                document.getElementById('letterText').innerText = newText;
             }
         }
     </script>
 
 </body>
 </html>
+
+    
+
+    
