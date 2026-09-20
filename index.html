@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flores Amarillas Para Ti 💛</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fffdf0 0%, #fff8d6 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Lluvia de flores de fondo */
+        .flower-rain {
+            position: fixed;
+            top: -10%;
+            font-size: 24px;
+            user-select: none;
+            z-index: 1;
+            animation: fall 5s linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(230, 180, 0, 0.25);
+            padding: 35px 25px;
+            max-width: 420px;
+            width: 100%;
+            border: 2px solid #ffe600;
+            z-index: 10;
+            position: relative;
+            animation: fadeIn 1.2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .flower-display {
+            font-size: 4.5rem;
+            margin: 10px 0 20px;
+            animation: pulse 2s infinite ease-in-out;
+            cursor: pointer;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.12); }
+            100% { transform: scale(1); }
+        }
+
+        h1 {
+            color: #d4a017;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        p {
+            color: #4a4a4a;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .btn-love {
+            background: linear-gradient(135deg, #ffd700, #ffae00);
+            color: #5a4000;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(255, 174, 0, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-love:active {
+            transform: scale(0.95);
+        }
+
+        .footer-text {
+            font-size: 0.85rem;
+            color: #999;
+            margin-top: 20px;
+        }
+
+        /* Mensaje emergente al presionar el botón */
+        .hidden-message {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #fff9c4;
+            border-radius: 15px;
+            color: #7f6000;
+            font-size: 0.95rem;
+            border: 1px dashed #ffd700;
+            animation: fadeIn 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="flower-display" onclick="createBurst()">🌻✨🌼</div>
+        <h1>¡Unas Flores Amarillas Para Ti!</h1>
+        <p>Aunque la distancia nos separe un poco, no podía dejar pasar este día sin entregarte las flores más brillantes. Gracias por iluminar todo a tu alrededor y ser tan especial. 💛</p>
+        
+        <button class="btn-love" onclick="toggleMessage()">Presiona aquí 💌</button>
+
+        <div class="hidden-message" id="extraMessage">
+            "Nunca olvides lo mucho que significas para mí. ¡Eres mi persona favorita!" 🌻✨
+        </div>
+
+        <div class="footer-text">Hecho especialmente para ti ✨</div>
+    </div>
+
+    <script>
+        // Función para crear la lluvia de flores
+        function createFlower() {
+            const flowers = ['🌻', '🌼', '💛', '✨', '🌸'];
+            const flower = document.createElement('div');
+            flower.classList.add('flower-rain');
+            flower.innerText = flowers[Math.floor(Math.random() * flowers.length)];
+            flower.style.left = Math.random() * 100 + 'vw';
+            flower.style.animationDuration = Math.random() * 3 + 3 + 's';
+            flower.style.fontSize = Math.random() * 15 + 20 + 'px';
+            
+            document.body.appendChild(flower);
+
+            setTimeout(() => {
+                flower.remove();
+            }, 6000);
+        }
+
+        setInterval(createFlower, 300);
+
+        // Mostrar / ocultar mensaje especial
+        function toggleMessage() {
+            const msg = document.getElementById('extraMessage');
+            if (msg.style.display === 'block') {
+                msg.style.display = 'none';
+            } else {
+                msg.style.display = 'block';
+                createBurst();
+            }
+        }
+
+        // Explosión de flores al interactuar
+        function createBurst() {
+            for(let i = 0; i < 10; i++) {
+                setTimeout(createFlower, i * 50);
+            }
+        }
+    </script>
+
+</body>
+</html>
